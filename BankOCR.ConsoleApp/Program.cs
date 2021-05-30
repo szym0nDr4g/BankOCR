@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace BankOCR.ConsoleApp
 {
@@ -6,7 +8,8 @@ namespace BankOCR.ConsoleApp
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var fileLines = File.ReadLines(args[0]);
+            
         }
     }
 }
