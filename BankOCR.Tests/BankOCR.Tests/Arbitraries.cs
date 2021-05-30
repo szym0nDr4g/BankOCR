@@ -16,20 +16,20 @@ namespace BankOCR.Tests
         public static Arbitrary<FakeMachineOutput> FakeMachineOutputGen()
         {
             var gen = from array in Gen.ArrayOf(
-                        9,
-                        Gen.OneOf(
-                            Gen.Constant('1'),
-                            Gen.Constant('2'),
-                            Gen.Constant('3'),
-                            Gen.Constant('4'),
-                            Gen.Constant('5'),
-                            Gen.Constant('6'),
-                            Gen.Constant('7'),
-                            Gen.Constant('8'),
-                            Gen.Constant('9'),
-                            Gen.Constant('0')
-                        ))
-                    select (FakeMachineOutput)FakeMachineOutput.FromActualValueOf(array);
+                    9,
+                    Gen.OneOf(
+                        Gen.Constant('1'),
+                        Gen.Constant('2'),
+                        Gen.Constant('3'),
+                        Gen.Constant('4'),
+                        Gen.Constant('5'),
+                        Gen.Constant('6'),
+                        Gen.Constant('7'),
+                        Gen.Constant('8'),
+                        Gen.Constant('9'),
+                        Gen.Constant('0')
+                    ))
+                select (FakeMachineOutput) FakeMachineOutput.FromActualValueOf(array);
 
             var arb = Arb.From(gen);
 
@@ -51,11 +51,11 @@ namespace BankOCR.Tests
                     )
                 )
                 select new ParsingEntryFromDataLines(
-                    new Tuple<Arr<char>, Arr<char>, Arr<char>, Arr<char>>(
+                    (
                         dataLines.Item1.ToArr(),
                         dataLines.Item2.ToArr(),
-                        dataLines.Item3.ToArr(),
-                        dataLines.Item4.ToArr())
+                        dataLines.Item3.ToArr()
+                    )
                 );
             var arb = Arb.From(gen);
 

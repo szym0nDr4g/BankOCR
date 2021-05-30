@@ -8,7 +8,7 @@ namespace BankOCR.Tests.FileLocationTests
     public struct FakeMachineOutput
     {
         public Arr<char> ActualOutputValue { get; private set; }
-        public Tuple<Arr<char>, Arr<char>, Arr<char>, Arr<char>> MachineOutput { get; private set; }
+        public (Arr<char> FirstLine, Arr<char> SecondLine, Arr<char> ThirdLine) MachineOutput { get; private set; }
 
         public static Either<Error, FakeMachineOutput> FromActualValueOf(Arr<char> actualOutputValue)
         {
@@ -30,23 +30,22 @@ namespace BankOCR.Tests.FileLocationTests
         public override string ToString()
         {
             return
-                $"{ActualOutputValue}{System.Environment.NewLine}{String.Join(System.Environment.NewLine, String.Join("", MachineOutput.Item1), String.Join("", MachineOutput.Item2), String.Join("", MachineOutput.Item3), String.Join("", MachineOutput.Item4))}{System.Environment.NewLine}";
+                $"{ActualOutputValue}{System.Environment.NewLine}{String.Join(System.Environment.NewLine, String.Join("", MachineOutput.Item1), String.Join("", MachineOutput.Item2), String.Join("", MachineOutput.Item3))}{System.Environment.NewLine}";
         }
 
         private FakeMachineOutput(Arr<char> actualOutputValue,
-            Tuple<Arr<char>, Arr<char>, Arr<char>, Arr<char>> machineOutput)
+            (Arr<char> FirstLine, Arr<char> SecondLine, Arr<char> ThirdLine) machineOutput)
         {
             ActualOutputValue = actualOutputValue;
             MachineOutput = machineOutput;
         }
 
-        private static Tuple<Arr<char>, Arr<char>, Arr<char>, Arr<char>> GetMachineOutput(Arr<char> actualOutputValue)
+        private static (Arr<char> FirstLine, Arr<char> SecondLine, Arr<char> ThirdLine) GetMachineOutput(Arr<char> actualOutputValue)
         {
             var firstLine = new Arr<char>();
             var secondLine = new Arr<char>();
             var thirdLine = new Arr<char>();
-            var fourthLine = new Arr<char>();
-
+            
             foreach (var character in actualOutputValue)
             {
                 if (character == '0')
@@ -110,8 +109,8 @@ namespace BankOCR.Tests.FileLocationTests
                     thirdLine = thirdLine.Add(' ').Add('_').Add('|');
                 }
             }
-
-            return new Tuple<Arr<char>, Arr<char>, Arr<char>, Arr<char>>(firstLine, secondLine, thirdLine, fourthLine);
+            
+            return (firstLine, secondLine, thirdLine);
         }
     }
 }
