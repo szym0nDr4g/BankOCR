@@ -8,7 +8,8 @@ namespace BankOCR.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var fileLines = File.ReadLines(args[0]);
+            File.ReadLines(args[0]);
+            
             
         }
     }

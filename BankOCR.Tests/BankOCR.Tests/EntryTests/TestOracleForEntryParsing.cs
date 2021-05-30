@@ -9,7 +9,7 @@ namespace BankOCR.Tests.FileLocationTests
     {
         public Arr<char> ActualOutputValue { get; private set; }
         public (Arr<char> FirstLine, Arr<char> SecondLine, Arr<char> ThirdLine) MachineOutput { get; private set; }
-
+        
         public static Either<Error, FakeMachineOutput> FromActualValueOf(Arr<char> actualOutputValue)
         {
             if (actualOutputValue.Any(c => !char.IsDigit(c)))

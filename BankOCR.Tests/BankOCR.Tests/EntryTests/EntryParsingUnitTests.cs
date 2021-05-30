@@ -56,7 +56,7 @@ namespace BankOCR.Tests.FileLocationTests
 
             //aaa
             result.Should().BeSuccess();
-            var actualResult = ((Entry) result).GetValue();
+            var actualResult = ((Entry) result).GetContent();
             var expectedResult = fakeMachineOutput.ActualOutputValue;
             return (actualResult == expectedResult).ToProperty()
                 .Label($"Should be parsed into {expectedResult} (Actually parsed as {actualResult})");

@@ -8,12 +8,12 @@ namespace BankOCR.ConsoleApp
     public record Entry
     {
         private readonly Arr<char> _chars;
-
-        public Arr<char> GetValue()
+        
+        public Arr<char> GetContent()
         {
             return _chars;
         }
-
+        
         private Entry(Arr<char> chars)
         {
             _chars = chars;
@@ -23,6 +23,7 @@ namespace BankOCR.ConsoleApp
             (InputLine FirstLine, InputLine SecondLine, InputLine ThirdLine) lines
         )
         {
+            //todo:change to fold
             var parsedChars = new Arr<char>();
             
             for (var positionNo = 0; positionNo < 9; positionNo++)
