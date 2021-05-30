@@ -19,7 +19,7 @@ namespace BankOCR.ConsoleApp
             _chars = chars;
         }
         
-        public static Either<Error, Entry> Parse(
+        public static Either<Error, Entry> ParseFromLines(
             (InputLine FirstLine, InputLine SecondLine, InputLine ThirdLine) lines
         )
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using static LanguageExt.Prelude;
 
 namespace BankOCR.ConsoleApp
 {
@@ -8,7 +9,10 @@ namespace BankOCR.ConsoleApp
     {
         static void Main(string[] args)
         {
-            File.ReadLines(args[0]);
+            Try(fun(() => File.ReadLines(args[0])))
+                .Map(enumerable => enumerable.ToArr());
+                
+                
             
             
         }

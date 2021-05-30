@@ -34,7 +34,7 @@ namespace BankOCR.Tests.FileLocationTests
 
         public Either<Error, Entry> Run()
         {
-            var result = Entry.Parse(DataLines); 
+            var result = Entry.ParseFromLines(DataLines); 
            
             return result;
         }

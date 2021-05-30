@@ -22,7 +22,7 @@ namespace BankOCR.Tests.FileLocationTests
             ));
             
             //aa
-            var result = Entry.Parse(lines)
+            var result = Entry.ParseFromLines(lines)
                 .Bind(entry => Checksum.ForEntry(entry))
                 .Map(checksum =>checksum.CheckValidity());
             
@@ -45,7 +45,7 @@ namespace BankOCR.Tests.FileLocationTests
             ));
             
             //aa
-            var result = Entry.Parse(lines)
+            var result = Entry.ParseFromLines(lines)
                 .Bind(entry => Checksum.ForEntry(entry))
                 .Map(checksum =>checksum.CheckValidity());
             
