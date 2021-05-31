@@ -10,4 +10,10 @@
       <PackageReference Include="LanguageExt.Core" Version="3.4.15" />
     </ItemGroup>
 
+    <ItemGroup>
+      <None Update="test.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

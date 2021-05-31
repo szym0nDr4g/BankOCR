@@ -28,7 +28,7 @@ namespace BankOCR.Tests.FileLocationTests
             
             //aaa
             result.Should().BeSuccess();
-            result.Do(validity => validity.Should().Be(Checksum.Validity.IsInvalid)); 
+            result.Do(validity => validity.Should().Be(Checksum.Validity.Invalid)); 
         }
         
         [Fact]
@@ -51,7 +51,7 @@ namespace BankOCR.Tests.FileLocationTests
             
             //aaa
             result.Should().BeSuccess();
-            result.Do(validity => validity.Should().Be(Checksum.Validity.IsValid)); 
+            result.Do(validity => validity.Should().Be(Checksum.Validity.Valid)); 
         }
     }
 }

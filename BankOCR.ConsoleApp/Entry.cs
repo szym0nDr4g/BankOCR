@@ -8,17 +8,24 @@ namespace BankOCR.ConsoleApp
     public record Entry
     {
         private readonly Arr<char> _chars;
-        
+        private readonly (InputLine FirstLine, InputLine SecondLine, InputLine ThirdLine) _lines;
+
         public Arr<char> GetContent()
         {
             return _chars;
         }
         
-        private Entry(Arr<char> chars)
+        private Entry(Arr<char> chars,(InputLine FirstLine, InputLine SecondLine, InputLine ThirdLine) lines)
         {
+            _lines = lines;
             _chars = chars;
         }
-        
+
+        public override string ToString()
+        {
+            return _chars.ToFullString(separator: String.Empty);
+        }
+
         public static Either<Error, Entry> ParseFromLines(
             (InputLine FirstLine, InputLine SecondLine, InputLine ThirdLine) lines
         )
@@ -46,7 +53,7 @@ namespace BankOCR.ConsoleApp
                 parsedChars = parsedChars.Add(currentCharacter);
             }
 
-            return new Entry(parsedChars);
+            return new Entry(parsedChars, lines);
         }
 
         private static char MatchChar(

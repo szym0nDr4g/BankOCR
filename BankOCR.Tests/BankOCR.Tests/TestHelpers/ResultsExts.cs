@@ -75,5 +75,20 @@ namespace BankOCR.Tests
 
             return new AndConstraint<Either<Error,TValue>>(_assertedResult);
         }
+        
+        public AndConstraint<Either<Error,TValue>> HaveErrorThatContainsMessage(string msg, string because = "",
+            params object[] becauseArgs)
+        {
+            Execute
+                .Assertion
+                .ForCondition(
+                    _assertedResult.Match(
+                        Left: actualError => actualError.Message.Contains(msg),
+                        Right: _ => false))
+                .BecauseOf(because, becauseArgs)
+                .FailWith("Error message \"{0}\" was excpected{reason}, but found {1}.", msg, _assertedResult);
+
+            return new AndConstraint<Either<Error,TValue>>(_assertedResult);
+        }
     }
 }

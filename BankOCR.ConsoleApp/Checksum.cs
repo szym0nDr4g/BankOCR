@@ -5,12 +5,12 @@ using static LanguageExt.Prelude;
 
 namespace BankOCR.ConsoleApp
 {
-    public class Checksum
+    public record Checksum
     {
         public enum Validity
         {
-            IsValid,
-            IsInvalid
+            Valid,
+            Invalid
         }
 
         private readonly int _value;
@@ -20,11 +20,16 @@ namespace BankOCR.ConsoleApp
             _value = value;
         }
 
+        public override string ToString()
+        {
+            return $"{_value} ({CheckValidity()})";
+        }
+
         public Validity CheckValidity() => _value switch
         {
-            var val when val % 11 == 0 => Validity.IsValid,
-            var val when val % 11 != 0 => Validity.IsInvalid,
-            _ => Validity.IsInvalid
+            var val when val % 11 == 0 => Validity.Valid,
+            var val when val % 11 != 0 => Validity.Invalid,
+            _ => Validity.Invalid
         };
 
         public static Either<Error, Checksum> ForEntry(Entry entry)
